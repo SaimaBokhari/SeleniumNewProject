@@ -45,7 +45,8 @@ public class Day01_BasicNavigations {
         // Close/Quit the browser
         //driver.close(); // this closes only the last active one
         // or
-        driver.quit();  // this is stronger.. this will close all windows and tabs
+        driver.quit();  // this is stronger.. this will close all windows and tabs that opened in that run
+        // (the previous run windows will be closed separately)
 
 
 
