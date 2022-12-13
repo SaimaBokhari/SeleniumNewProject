@@ -1,4 +1,4 @@
-package tests;
+package tests.day02;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

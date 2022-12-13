@@ -1,4 +1,4 @@
-package tests;
+package tests.day02;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -25,3 +25,6 @@ public class Day02_WebDriverManager {
 
     }
 }
+// -	Selenium testing - To do Selenium testing we created Maven project and uploaded Selenium
+//                         Jar files/dependencies and Chrome Driver.
+//-	Multiple drivers –creating different drivers is the concept of polymorphism ..

@@ -1,4 +1,4 @@
-package tests;
+package tests.day01;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -55,7 +55,10 @@ public class Day01_BasicNavigations {
         User Story:
         - When user goes to walmart
         - Then goes to amazon
-        -
+        - Navigate back to walmart
+        - Navigate forward to amazon
+        - Refresh the page
+        - Close/quit the browser
 
          */
 
