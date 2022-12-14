@@ -1,4 +1,4 @@
-package tests.day03;
+package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -18,7 +18,7 @@ public class Day03_Checkbox {
     WebDriver driver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         //Usual steps to set up
 
         WebDriverManager.chromedriver().setup();
@@ -34,8 +34,15 @@ public class Day03_Checkbox {
 
     }
 
+    // close the driver
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
+
+
     @Test
-    public void checkboxTest(){
+    public void checkboxTest() {
         /*
 Create a class : CheckBox
 
@@ -52,12 +59,12 @@ Then verify that checkbox1 is checked.
         WebElement checkbox2 = driver.findElement(By.id("box2"));
 
         // Click on the checkbox 1 if it's NOT already selected
-        if(! checkbox1.isSelected()){ //isSelected() returns true id checkbox is checked, returns false if checkbox is not checked
+        if (!checkbox1.isSelected()) { //isSelected() returns true if checkbox is checked, returns false if checkbox is not checked
             checkbox1.click();
         }
 
         // Click on the checkbox 2 if it's NOT already selected
-        if(! checkbox2.isSelected()){
+        if (!checkbox2.isSelected()) {
             checkbox2.click();
         }
 
@@ -65,13 +72,7 @@ Then verify that checkbox1 is checked.
         assertTrue(checkbox1.isSelected());
 
 
-
-    }
-
-
-    // close the driver
-    @After
-    public void tearDown(){
-        driver.quit();
     }
 }
+
+

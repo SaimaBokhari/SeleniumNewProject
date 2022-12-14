@@ -1,4 +1,4 @@
-package tests.day02;
+package tests;
 
 import org.junit.*;
 

@@ -1,4 +1,4 @@
-package tests.day03;
+package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Day03_Locators {
 
@@ -26,6 +27,7 @@ public class Day03_Locators {
         driver = new ChromeDriver();
         // Implicit wait. .. just to make sure that driver doesn't fail in case page takes longer to open/or internet is slow
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));  // 15 seconds wait in case needed
+        //Thread.sleep(3000);
         // maximise window
         driver.manage().window().maximize();
 
@@ -35,44 +37,36 @@ public class Day03_Locators {
     }
 
 
-    @Test
-    public void logInTest(){
-        /*
+    /*
 
 Test case:
 
-Create a class : LocatorsIntro
-Create test method locators
-user goes to http://a.testaddressbook.com/sign_in
-Locate the elements of email textbox, password textbox, and signin button
-Enter below username and password then click sign in button
-Username :  testtechproed@gmail.com
-Password : Test1234!
-Then verify that the expected user id  testtechproed@gmail.com (USE getText() method to get the text from the page)
-Verify the Addresses and Sign Out  texts are displayed
-Find the number of total link on the page
-Sign out from the page
-
-we used this website as the above wasn't working
-https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+        User goes to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+        Locate the elements of Username textbox, Password textbox, and Login button
+        Enter below username and password then click on login button
+                Username :  Admin
+                Password :  admin123
+        Assert the login is successful
+        Sign out from the page
 
      */
 
-        // Locate the elements of username and  password textbox
-        WebElement userName = driver.findElement(By.name("username")); // Locating username by name
-        userName.sendKeys("Admin"); // typing in the given name
+    @Test
+    public void logInTest(){
 
-        // for password
+
+        // Locate the elements of username and  password and login textbox
+        WebElement userName = driver.findElement(By.name("username")); // Locating username by name
         WebElement password = driver.findElement(By.name("password"));
-        password.sendKeys("admin123");
+        WebElement button = driver.findElement(By.tagName("button"));
+        // we can use 'button' as tagName coz it's used only once on the page.
+        // highlight any code -> right click -> press cmd f --> search appears at the bottom, write the word that you want to search
 
         // "sendKeys() is a method to type in the inputs automatically
         // to highlight and see how many times a word/tag is used,
-        // highlight any code -> right click -> press cmd f --> search appears at the bottom, write the word that you want to search
 
-        // Locating the button and click on it
-        // we can use 'button' as tagName coz it's used only once on the page.
-        WebElement button = driver.findElement(By.tagName("button"));
+        userName.sendKeys("Admin"); // sending the given data
+        password.sendKeys("admin123");
         button.click();
 
 
@@ -81,6 +75,7 @@ https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
         // To show automation code works successfully, do assertions
 
 
+        // Assert the login is successful
         /*
         Verify that log-in is successful:
            1. We can use default page URL to do assertion
@@ -90,11 +85,14 @@ https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
               Default page: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
          */
 
+        // first way:
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";  // to show that login was successful
-
         assertEquals("lOGIN FAILED",actualURL, expectedURL);  // print message if login is unsuccessful
 
+        // another way of assertion
+        boolean actualUrl = driver.getCurrentUrl().contains("dashboard");
+        assertTrue(actualUrl);
 
 
         /*
@@ -104,16 +102,27 @@ https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
         driver.findElement(By.tagName("button")).click();
 
 
-        // but container ones are re-usable.. you find element once and re-use it again for other functions
+        // but container ones are re-usable.. you find element once and re-use it again for other functions.. hence better
 
          */
 
 
         /*
+        NOTES:
+Almost every application is using web browser these days.
+Web elements :  button, search box, text box, headers, title etc.
+<a> is an anchor to go to a different page.
+Web elements put all together make a web page.
+Go to the page -> right click -> click on inspect to see the html codes of that whole page
+
+What are LOCATORS?
+we have 2 steps for WebElements:
+      1. Identify the element
+      2. Selenium identifies the elements using locators.
 
 There are 8 selenium locators to locate an element.
 
-id -> The first 3 are called ATTRIBUTE
+id -> The most preferred one because of its uniqueness.
 name
 className
 tagName
@@ -121,6 +130,8 @@ linkText
 partialLinkText
 xpath ->  There are multiple ways to write xpath
 css   ->  There are multiple ways to write css
+
+The first 3 are called ATTRIBUTE
      */
 
 
