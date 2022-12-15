@@ -54,6 +54,8 @@ public class Day04_LinkTexts {
         String expectedUrl = "https://lms.techproeducation.com/";
         String actualUrl = driver.getCurrentUrl();
         assertEquals("LMS LOGIN Page is not displayed!",expectedUrl,actualUrl);
+        // Message will appear only if the test case fails
+
 
         // 2nd way: By locating a CORE element on the expected page and assert
         WebElement loginElement = driver.findElement(By.linkText("Login/Register"));
@@ -62,3 +64,6 @@ public class Day04_LinkTexts {
 
     }
 }
+/*
+/html/body/div/div/div/div/div/div[2]/div[2]/form/div[1]/div/div[2]/input[1]
+ */
