@@ -85,12 +85,13 @@ Test case:
               Default page: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
          */
 
-        // first way:
+        // first way: use page url to do assertion
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";  // to show that login was successful
         assertEquals("lOGIN FAILED",actualURL, expectedURL);  // print message if login is unsuccessful
 
         // another way of assertion
+        // Find the webElement that's specific for that page where you're supposed to be
         boolean actualUrl = driver.getCurrentUrl().contains("dashboard");
         assertTrue(actualUrl);
 

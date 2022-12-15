@@ -42,7 +42,7 @@ public class Day03_Checkbox {
 
 
     @Test
-    public void checkboxTest() {
+    public void checkboxTest() throws InterruptedException {
         /*
 Create a class : CheckBox
 
@@ -59,6 +59,7 @@ Then verify that checkbox1 is checked.
         WebElement checkbox2 = driver.findElement(By.id("box2"));
 
         // Click on the checkbox 1 if it's NOT already selected
+        Thread.sleep(2000); // Hard wait == Java wait
         if (!checkbox1.isSelected()) { //isSelected() returns true if checkbox is checked, returns false if checkbox is not checked
             checkbox1.click();
         }

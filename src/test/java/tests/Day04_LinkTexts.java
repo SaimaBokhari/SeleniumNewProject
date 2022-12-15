@@ -16,6 +16,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Day04_LinkTexts {
+    /*
+    => Go to "https://techproeducation.com/"
+    => Locate the LMS LOGIN with link text
+    => Click on LMS LOGIN
+    => Assert that LMS page is visible
+     */
     WebDriver driver;
 
     @Before
@@ -36,20 +42,11 @@ public class Day04_LinkTexts {
     public void LMSPage(){
         driver.get("https://techproeducation.com/");
 
-        // Click on LMS Login
-        // LMS Login is a link and its text is "LMS LOGIN"
+        // Click on LMS Login .... it is a link and its text is "LMS LOGIN"
 
         driver.findElement(By.linkText("LMS LOGIN")).click();
 
-    }
-
-    @Test
-    public void LMSPagePartialLinkText(){
-        driver.get("https://techproeducation.com/");
-        driver.findElement(By.partialLinkText("LMS")).click();
-
         // Assert LMS page is visible
-
         // 1st way: using URL
         String expectedUrl = "https://lms.techproeducation.com/";
         String actualUrl = driver.getCurrentUrl();
@@ -57,13 +54,27 @@ public class Day04_LinkTexts {
         // Message will appear only if the test case fails
 
 
+    }
+
+    @Test
+    public void LMSPagePartialLinkText(){
+        driver.get("https://techproeducation.com/");
+        driver.findElement(By.partialLinkText("LMS L")).click();
+
+        // Assert LMS page is visible
         // 2nd way: By locating a CORE element on the expected page and assert
         WebElement loginElement = driver.findElement(By.linkText("Login/Register"));
-        assertTrue(loginElement.isDisplayed()); // isDisplayed() returns True if element is on the page and vice versa
+        assertTrue(loginElement.isDisplayed());
+        // isDisplayed() returns True if element is on the page and vice versa
+
+        /*
+        Mevlut's way:
+              boolean isDisplayed = driver.findElement(By.className("dn-lg")).isDisplayed();
+              Assert.assertTrue(isDisplayed);
+         */
+
         //assertTrue(driver.findElement(By.linkText("Login/Register")).isDisplayed());
+
 
     }
 }
-/*
-/html/body/div/div/div/div/div/div[2]/div[2]/form/div[1]/div/div[2]/input[1]
- */
