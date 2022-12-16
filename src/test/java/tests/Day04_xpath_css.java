@@ -67,10 +67,13 @@ public class Day04_xpath_css {
         //          Username :  Admin
         //          Password :  admin123
 
+        // // The most common one is //tagname[@attribute='TEXT OF THE ELEMENT']
 
         driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("Admin");
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
+        // another way if there are multiple values ==> (//input)[3]   (//a)[1]
+
 
 
         //Assert the login is successful
@@ -103,6 +106,7 @@ public class Day04_xpath_css {
         //          Password :  admin123
 
 
+        // ccsSelectors are simple. we use hash sign for id
         driver.findElement(By.cssSelector("input[placeholder='Username']")).sendKeys("Admin");
         driver.findElement(By.cssSelector("input[name='password']")).sendKeys("admin123");
         driver.findElement(By.cssSelector("button[type='submit']")).click();
@@ -119,5 +123,19 @@ public class Day04_xpath_css {
     public void tearDown(){
         driver.quit();
     }
+
+    /*
+    HW:
+     * How many locators are there?
+
+     * What are they?
+
+     * Which one do you prefer? Why?
+
+     * What is difference between absolute xpath and relative xpath?
+
+     * What is the difference between xpath and css selector?
+
+     */
 
 }
