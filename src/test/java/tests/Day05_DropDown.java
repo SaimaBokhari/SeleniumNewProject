@@ -148,7 +148,7 @@ DropDown Interview Questions:
 
  */
 
-// Test cases:
+// Test case:
 //Go to https://testcenter.techproeducation.com/index.php?page=dropdown
 //1.Create method selectByIndexTest and Select Option 1 using index
 //2.Create method selectByVisibleTextTest Select Option 2 by using visible text
@@ -159,29 +159,3 @@ DropDown Interview Questions:
 //7.Find the size of the dropdown, Print "Expected Is Not Equal Actual" if there are not 3 elements in the dropdown.
 
 
-/*
-HW 1:
-
-Create A Class: AmazonDropdown
-Create A Method dropdownTest
-Go to https://www.amazon.com/
-Find the element of the dropdown element. HINT: By.id(“searchDropdownBox")
-1. Print the first selected option and assert if it equals “All Departments”.If it fails, then comment that code out and continue rest of the test case.
-2. Select the 4th option by index (index of 3) and assert if the name is “Amazon Devices”.(after you select you need to use get first selected option method). If it fails, then comment that code out and continue rest of the test case.
-3. Print all of the dropdown options-getOptions(); method returns the List<WebElement>. Using loop, print all options.
-4. Print the the total number of options in the dropdown
-5. Assert if ‘Appliances’ is a dropdown option. Print true if “Appliances” is an option. Print false otherwise.
-
-BONUS: Assert if the dropdown is in Alphabetical Order
-
-HW 2:
-Create a new class : GoogleSearchTest.
-Create main method and complete the following task.
-When user goes to https://www.google.com/
-Search for “porcelain teapot”
-And print how many related results displayed on Google
-
-HW 3:
-
-
- */

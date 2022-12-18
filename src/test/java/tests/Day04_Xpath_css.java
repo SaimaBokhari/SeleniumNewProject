@@ -12,7 +12,7 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class Day04_xpath_css {
+public class Day04_Xpath_css {
     /*
     xpaths are dynamic locators.
 
