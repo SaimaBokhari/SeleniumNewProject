@@ -22,6 +22,14 @@ Then user verifies the text:  “New Window”
 When user goes back to the previous window and then verifies the title : “The Internet”
      */
 
+    /*
+    Summary notes:
+    - Multiple windows may open when there's a link that opens in a new TAB or WINDOW
+    - We use windowHandle() to get the current window id or windowHandles() to get all the open windows ids
+    - We use set of list to get all window ids and switch to the desired window using loop and if condition
+
+     */
+
     @Test
     public void windowHandleTest() throws InterruptedException {
 //        Given user is on the https://the-internet.herokuapp.com/windows

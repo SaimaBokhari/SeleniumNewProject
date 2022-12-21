@@ -19,6 +19,18 @@ Type “This text box is inside the iframe”
 Verify the text Elemental Selenium text is displayed on the page
      */
 
+    /*
+    Summary notes:
+    - Iframe is used to add a page within a page e.g. maps, videos, scrollbars etc.
+    - so driver must switch to iframe first to see the elements in the iframe
+    - syntax ==> driver.switchTo().frame();
+    - we can use 3 ways to get to the required iframe =>  ("by using id/name, index, or web-element");
+    - how to come out of the iframe?  driver.switchTo().parentFrame() OR defaultContent()
+    - parentFrame() always switch one level up
+    - defaultContent() switches to the highest level
+
+     */
+
 
     @Test
     public void iframeTest(){
