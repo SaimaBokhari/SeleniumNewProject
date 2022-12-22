@@ -34,7 +34,7 @@ public class Day08_Actions01 extends TestBase {
         WebElement box = driver.findElement(By.id("hot-spot"));
 
         // Step 3: Use actions object with proper method.
-        actions.contextClick(box).perform();
+        actions.contextClick(box).perform();  // for right click
 
         // Verify the alert message is “You selected a context menu”
         // Step 1: switch to alert

@@ -24,7 +24,10 @@ public class Day08_Authentication extends TestBase {
 
         // Assertion
         String successMessage = driver.findElement(By.xpath("//p")).getText();
-        assertEquals("Congratulations! You must have the proper credentials.", successMessage);
+       // assertEquals("Congratulations! You must have the proper credentials.", successMessage);
+        // OR
+        assertTrue(successMessage.contains("Congratulations!"));
+
 
         // OR
        // assertTrue(driver.findElement(By.xpath("//h3")).isDisplayed());

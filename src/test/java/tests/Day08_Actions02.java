@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Day08_Actions02 extends TestBase {
     /*
@@ -42,6 +43,38 @@ public class Day08_Actions02 extends TestBase {
         String resultText = driver.findElement(By.xpath("//h1")).getText();
         assertEquals("Action Complete", resultText);
 
+    }
+
+    @Test
+    public void amazonHoverTest() throws InterruptedException {
+
+        /*
+        Create test method: hoverOver() and test the following scenario
+        Given user is on the https://www.amazon.com/
+        When user clicks on "Account" link
+        Then verify the page title contains "Your Account"
+         */
+
+        driver.get("https://www.amazon.com/");
+
+        // Hover over "Account"
+        // Step 1: Create actions object
+        Actions actions = new Actions(driver);
+
+        // Step 2: Locate the webElement
+        WebElement accountList = driver.findElement(By.id("nav-link-accountList"));
+
+        // Step 3:
+        actions.moveToElement(accountList).perform();
+
+        // Click on "Account" link
+        Thread.sleep(2000);
+        driver.findElement(By.linkText("Account")).click();
+
+        Thread.sleep(2000);
+
+        // Verify the page title contains "Your Account"
+        assertTrue(driver.getTitle().contains("Your Account"));
 
 
     }

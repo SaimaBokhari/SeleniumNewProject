@@ -1,6 +1,7 @@
 package homework;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,11 +29,14 @@ And print how many related results displayed on Google
         //Search for “porcelain teapot”
         WebElement searchBox= driver.findElement(By.xpath("//input[@class='gLFyf']"));
         searchBox.sendKeys("porcelain teapot");
-        searchBox.click();
+        searchBox.sendKeys(Keys.ENTER);
+
+        // Print how many related results displayed on Google
+        String result = driver.findElement(By.id("result-stats")).getText();
+        System.out.println("result = " + result);
 
 
     }
-
 
 
 

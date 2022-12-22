@@ -41,7 +41,12 @@ And
         // we can also use method chain
         // build() is recommended to use in method chain to make sure the connection between methods is strong
         // perform() is a MUST to use to execute the action.
-        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).build().perform();
+        actions.
+                sendKeys(Keys.PAGE_DOWN).
+                sendKeys(Keys.PAGE_DOWN).
+                sendKeys(Keys.PAGE_DOWN).
+                build().
+                perform();
 
         // build() is recommended; perform()  is mandatory
 
