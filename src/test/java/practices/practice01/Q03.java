@@ -1,4 +1,4 @@
-package practices;
+package practices.practice01;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -75,7 +75,7 @@ public class Q03 {
         select.selectByVisibleText("Canada");
 
 
-        // Fill the Date Of Birth: 1st February 2000
+        // Fill Date Of Birth: 1st February 2000
         driver.findElement(By.id("datepicker")).sendKeys("02/01/2000"); // Feb 1st, 2000
 
         // Fill the Phone Number: 12345

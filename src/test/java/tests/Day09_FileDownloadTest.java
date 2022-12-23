@@ -22,7 +22,7 @@ Then
      */
 
     @Test
-    public void fileDownloadTest(){
+    public void fileDownloadTest() throws InterruptedException {
         //  Go to "https://testcenter.techproeducation.com/index.php?page=file-download"
 
         driver.get("https://testcenter.techproeducation.com/index.php?page=file-download");
@@ -30,11 +30,16 @@ Then
         //  Download b10 all test cases, code.docx file
         driver.findElement(By.partialLinkText("code.docx")).click();
 
+        // After clicking, it takes a few milliseconds to download so we use hard wait
+        Thread.sleep(2000);
+
         // Verify if the file downloaded successfully
         String userHOME = System.getProperty("user.home");      // gives user home directory
         System.out.println("userHOME = " + userHOME);   // /Users/Ahmed
 
-        boolean isDownloaded = Files.exists(Paths.get(userHOME + "/Downloads/b10 all test cases, code.docx"));
+        String filePath = userHOME + "/Downloads/b10 all test cases, code.docx";
+
+        boolean isDownloaded = Files.exists(Paths.get(filePath));
         assertTrue(isDownloaded);
 
         boolean isJarDownloaded = Files.exists(Paths.get(userHOME + "/Downloads/junit-4.13-beta-3.jar"));
