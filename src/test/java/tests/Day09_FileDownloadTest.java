@@ -46,6 +46,12 @@ Then
         assertTrue(isJarDownloaded);
 
 
+        /*
+        Selenium has limitations when it comes to downloaded files.
+        But Java comes handy. We use java to understand that the path of the
+        file exist, if it does exist, we can verify it using selenium.
+
+         */
 
     }
 

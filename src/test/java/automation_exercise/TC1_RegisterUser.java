@@ -117,19 +117,20 @@ public class TC1_RegisterUser extends TestBase {
         driver.findElement(By.xpath("(//a[@href='/'])[3]")).click();
 
         // 16. Verify that 'Logged in as username' is visible
-
+        boolean isDisplayed = driver.findElement(By.xpath("//i[@class='fa fa-user']")).isDisplayed();
+        assertTrue(isDisplayed);
 
         // 17. Click 'Delete Account' button
-        driver.findElement(By.xpath("//a[@href='/delete_account']")).click();
-        Thread.sleep(2000);
-
-        // 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-        boolean accountDeleted = driver.findElement(By.xpath("(//b)[1]")).isDisplayed();
-        assertTrue(accountDeleted);
-
-        driver.findElement(By.xpath("(//a[@href='/'])[3]")).click();
-
-        Thread.sleep(2000);
+//        driver.findElement(By.xpath("//a[@href='/delete_account']")).click();
+//        Thread.sleep(2000);
+//
+//        // 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+//        boolean accountDeleted = driver.findElement(By.xpath("(//b)[1]")).isDisplayed();
+//        assertTrue(accountDeleted);
+//
+//        driver.findElement(By.xpath("(//a[@href='/'])[3]")).click();
+//
+//        Thread.sleep(2000);
 
     }
 }
