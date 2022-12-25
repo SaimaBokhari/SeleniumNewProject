@@ -12,7 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -53,7 +52,7 @@ public abstract class TestBase {
         assertTrue(driver.findElement(By.id("result")).getText().contains(textFromList));
 
         // This reusable method is based for the given website... https://testcenter.techproeducation.com/index.php?page=autocomplete
-        // We need to use the same LOGIC to create this reusable method for the company we work
+        // You need to use the same LOGIC to create this reusable method for the company you work
         // Because your locators and xpath will be different
         // NOTE: THIS REUSABLE METHOD DESIGNED FOR OUR CURRENT PROJECT. THIS MAY NOT WORK FOR NEW PROJECTS, BUT CAN BE MODIFIED AND USED FOR THAT NEW PROJECT
         // NOTE: YOU WILL SEE THIS KIND OF REUSABLE METHOD THAT IS SPECIFIC TO YOUR OWN PROJECT
@@ -71,9 +70,13 @@ public abstract class TestBase {
 
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
 
-        String path = System.getProperty("user.dir")+ "/test-output/Screenshots/"+currentTime+".png"; // this is where we save the image
+        String path = System.getProperty("user.dir")+ "/test-output/Screenshots/"+currentTime+".png";
+        // this is where we save the image, and every new screenshot will get a new name dynamically because
+        // the seconds will be different everytime a new screenshot is taken
 
         FileUtils.copyFile(image, new File(path));
+
+
 
     }
 

@@ -26,7 +26,7 @@ Then verify the File Uploaded!  Message displayed
         driver.get("https://the-internet.herokuapp.com/upload");
 
         // 1. Locate 'choose file' button and click
-        WebElement chooseAFileButton = driver.findElement(By.id("file-upload"));
+        WebElement chooseFileButton = driver.findElement(By.id("file-upload"));
 
         Thread.sleep(2000);
 
@@ -42,7 +42,7 @@ Then verify the File Uploaded!  Message displayed
         // logo.jpeg is the name of the file I uploaded. We only have to change the name of the file that we want to upload
 
         // Send the path of the file we want to upload, using sendkeys because the input type is 'file'
-        chooseAFileButton.sendKeys(pathOfFile);
+        chooseFileButton.sendKeys(pathOfFile);
 
         // 3. Then locate "upload' button click upload
         driver.findElement(By.id("file-submit")).click();
