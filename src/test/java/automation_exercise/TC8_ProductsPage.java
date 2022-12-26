@@ -17,7 +17,7 @@ public class TC8_ProductsPage extends TestBase {
 6. The products list is visible
 7. Click on 'View Product' of first product
 8. User is landed to product detail page
-9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
+9. Verify that detail is visible: product name, category, price, availability, condition, brand
 
      */
     @Test
