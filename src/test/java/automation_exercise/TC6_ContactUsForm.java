@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TC6_ContactUsForm extends TestBase {
     /*
+    TC6
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
 3. Verify that home page is visible successfully
@@ -22,7 +23,7 @@ public class TC6_ContactUsForm extends TestBase {
 11. Click 'Home' button and verify that landed to home page successfully
      */
     @Test
-    public void contactUsFormTest(){
+    public void contactUsFormTest() throws InterruptedException {
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
 
@@ -54,9 +55,11 @@ public class TC6_ContactUsForm extends TestBase {
 
         // Send the path of the file we want to upload, using sendkeys because the input type is 'file'
         chooseFileButton.sendKeys(pathOfFile);
+        Thread.sleep(2000);
 
         // 8. Click 'Submit' button
-        driver.findElement(By.name("submit")).click();
+        WebElement submitButton = driver.findElement(By.name("submit"));
+        submitButton.click();
 
        // 9. Click OK button
        // When we submit, an alert pops up. So we need to switch to alert first and then accept it

@@ -11,7 +11,7 @@ import utilities.TestBase;
 import java.time.Duration;
 import java.util.List;
 
-public class HW2_AmazonSearchTest extends TestBase {
+public class HW4_AmazonSearchTest extends TestBase {
     //Create a new class: AmazonSearch
     // TC01_As user I want to know how many item are there on amazon in the first page after
     // I search "porcelain teapot"?

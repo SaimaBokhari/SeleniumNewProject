@@ -70,6 +70,7 @@ Test Case 10: Verify Subscription in home page
         driver.findElement(By.id("subscribe")).click();
 
         // 7. Verify success message 'You have been successfully subscribed!' is visible
+
         // the message disappears!!!!!!
 
 

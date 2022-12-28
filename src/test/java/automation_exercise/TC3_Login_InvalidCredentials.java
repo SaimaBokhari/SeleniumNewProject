@@ -43,5 +43,6 @@ public class TC3_Login_InvalidCredentials extends TestBase {
         // 8. Verify error 'Your email or password is incorrect!' is visible
         boolean failureMessage = driver.findElement(By.xpath("//p[.='Your email or password is incorrect!']")).isDisplayed();
         assertTrue(failureMessage);
+
     }
 }

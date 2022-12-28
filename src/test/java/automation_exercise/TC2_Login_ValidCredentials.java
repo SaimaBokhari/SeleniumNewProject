@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TC2_Login_ValidCredentials extends TestBase {
     /*
+Test Case 2: Login User with correct email and password
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
 3. Verify that home page is visible successfully
@@ -55,6 +56,5 @@ public class TC2_Login_ValidCredentials extends TestBase {
         assertTrue(accountDeleted);
 
     }
-
 
 }

@@ -46,15 +46,13 @@ public class TC9_SearchProduct extends TestBase {
 
         // 7. Verify 'SEARCHED PRODUCTS' is visible
         String successMessage = driver.findElement(By.xpath("//h2[.='Searched Products']")).getText();
-        System.out.println("successMessage = " + successMessage);
+        //System.out.println("successMessage = " + successMessage);
         assertTrue(successMessage.contains("SEARCHED PRODUCTS"));
 
 
         // 8. Verify all the products related to search are visible
-//        WebElement searchBox1 = driver.findElement(By.id("search_product"));
-//        searchBox.sendKeys("Jeans");
-        List<WebElement> list = driver.findElements(By.xpath("//input[@value ='jeans']"));
-        System.out.println("list = " + list);
+        WebElement searchBox1 = driver.findElement(By.id("search_product"));
+        searchBox.sendKeys("Jeans");
 
         // ?????????
 

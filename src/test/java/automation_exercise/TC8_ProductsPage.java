@@ -2,7 +2,10 @@ package automation_exercise;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utilities.TestBase;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -34,11 +37,13 @@ public class TC8_ProductsPage extends TestBase {
 
         // 5. Verify user is navigated to ALL PRODUCTS page successfully
         //String productsPageHeader = driver.findElement(By.xpath("//h2[@class='title text-center']")).getText();
+
         // The above doesn't work so I located the search box on this page
         assertTrue(driver.findElement(By.id("search_product")).isDisplayed());
 
         // 6. The products list is visible
-
+        boolean productsVisible = driver.findElement(By.xpath("(//h2)[3]")).isDisplayed();
+        assertTrue(productsVisible);
 
         // 7. Click on 'View Product' of first product
         Thread.sleep(2000);
@@ -46,6 +51,9 @@ public class TC8_ProductsPage extends TestBase {
 
 
         // 8. User is landed to product detail page
+        Thread.sleep(2000);
+        boolean productPage = driver.findElement(By.xpath("//a[@href='#reviews']")).isDisplayed();
+        assertTrue(productPage);
 
         // 9. Verify that detail is visible: product name, category, price, availability, condition, brand
         assertTrue(driver.findElement(By.xpath("(//h2)[3]")).isDisplayed());
