@@ -4,10 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
@@ -61,22 +58,44 @@ public abstract class TestBase {
     }
 
     // Take a SCREENSHOT OF ENTIRE PAGE with this reusable method
-    public void takeScreenShotOfPage() throws IOException {
+    public void takeScreenShotOfPage() {
         // To create a screenshot, follow these steps
-        // Step 1. Take screenshot using getScreenshotAs() method (This method comes from SELENIUM API)
+        // Step 1. Take screenshot using getScreenshotAs() method (This method comes from SELENIUM API). This takes THE SCREENSHOT of the entire page
         File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  // this is the image object, not the name of the image
 
-        // Step 2. Save the screenshot in a path with DYNAMIC NAME
-
+        // Step 2. Creating a path with a DYNAMIC NAME for the image
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
 
+        // Path is where we save the screenshot.  user==> Project /dir ==> folder / Screenshots  ==> folder/  currentTime+".png ==> dynamoc name of the image
         String path = System.getProperty("user.dir")+ "/test-output/Screenshots/"+currentTime+".png";
+        // System.out.println("path = " + path);
         // this is where we save the image, and every new screenshot will get a new name dynamically because
         // the seconds will be different everytime a new screenshot is taken
 
-        FileUtils.copyFile(image, new File(path));
+        // Step 3. Saving image in the path
+        try {
+            FileUtils.copyFile(image, new File(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
 
+    // Take a SCREENSHOT OF THE SPECIFIC ELEMENT with this reusable method
+    public void takeScreenShotOfTheElement(WebElement webElement){
+        // 1. Take screenshot
+        File image = webElement.getScreenshotAs(OutputType.FILE);
+
+        // 2. Creating a path with a DYNAMIC NAME for the image
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
+        String path = System.getProperty("user.dir")+ "/test-output/Screenshots/Specific Elements/"+currentTime+".png";
+
+        // 3. Saving image in the path
+        try {
+            FileUtils.copyFile(image, new File(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
