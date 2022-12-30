@@ -63,10 +63,10 @@ public abstract class TestBase {
         // Step 1. Take screenshot using getScreenshotAs() method (This method comes from SELENIUM API). This takes THE SCREENSHOT of the entire page
         File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  // this is the image object, not the name of the image
 
-        // Step 2. Creating a path with a DYNAMIC NAME for the image
+        // Step 2. Creating a path and a DYNAMIC NAME for the image
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
 
-        // Path is where we save the screenshot.  user==> Project /dir ==> folder / Screenshots  ==> folder/  currentTime+".png ==> dynamoc name of the image
+        // Path is where we save the screenshot.  user==> Project /dir ==> folder / Screenshots  ==> folder/  currentTime+".png ==> dynamic name of the image
         String path = System.getProperty("user.dir")+ "/test-output/Screenshots/"+currentTime+".png";
         // System.out.println("path = " + path);
         // this is where we save the image, and every new screenshot will get a new name dynamically because
@@ -86,7 +86,7 @@ public abstract class TestBase {
         // 1. Take screenshot
         File image = webElement.getScreenshotAs(OutputType.FILE);
 
-        // 2. Creating a path with a DYNAMIC NAME for the image
+        // 2. Creating a path and a DYNAMIC NAME for the image
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
         String path = System.getProperty("user.dir")+ "/test-output/Screenshots/Specific Elements/"+currentTime+".png";
 

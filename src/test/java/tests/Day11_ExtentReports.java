@@ -16,9 +16,11 @@ import static org.junit.Assert.assertEquals;
 
 public class Day11_ExtentReports extends TestBase {
 
-    protected static ExtentReports extentReports;
-    protected static ExtentHtmlReporter extentHtmlReporter;
-    protected static ExtentTest extentTest;
+    protected static ExtentReports extentReports;     // This class is used for file generation; creates an empty report template, to which we can add custom information
+    protected static ExtentHtmlReporter extentHtmlReporter; // This class is used to add configuration information e.g. document title, report name etc.
+                                                            // This is also responsible for storing the PATH of the report
+    protected static ExtentTest extentTest;  // This class is used for logging information.
+    // Some people call it      logger   as well.
 
     @BeforeClass
     public static void extentReportsSetUp(){
@@ -35,18 +37,21 @@ public class Day11_ExtentReports extends TestBase {
        // 3. Create extent reports object for generating the Entire reports with configuration
         extentReports = new ExtentReports();
 
-        // 4.   Customise System Info
-        extentReports.setSystemInfo("Test Environment", "Smoke Test");
+//      **********************
+
+        // 4.   adding custom System Info
+        extentReports.setSystemInfo("Test Environment", "Smoke Test");  // or Regression test , or UAT etc.
         extentReports.setSystemInfo("Application", "TechProEducation");
+        extentReports.setSystemInfo("Browser", "Chrome");
         extentReports.setSystemInfo("Team", "RedBulls");
         extentReports.setSystemInfo("SQA", "John");  // SQA ==> Software Query ?
         extentReports.setSystemInfo("Sprint Number", "SP205");
 
-        // 5. Add more custom config info
+        // 5. Add more custom configuration info
         extentHtmlReporter.config().setReportName("TechPro Education LMS");
         extentHtmlReporter.config().setDocumentTitle("TechPro Education Extent Reports");
 
-        // 6. Done With Configuration (attachReporter)
+        // 6. Done With Configuration... Now attach the two  (attachReporter)
         extentReports.attachReporter(extentHtmlReporter);
 
         /*
@@ -54,15 +59,16 @@ public class Day11_ExtentReports extends TestBase {
                 extentReports and extentHtmlReporter are used to add custom information
                 on the report and create the report in a path.
 
-                Then as assign it to extentTest as shown in the next step
+                Then we assign it to extentTest as shown in the next step
          */
 
+        // Report is done. Now creating extent test to log info in the test case
         // 7. Create extent test
         extentTest = extentReports.createTest("Extent Reporter","Smoke Test Report");
     }
 
     @Test
-    public void extentReportTest(){
+    public void extentReportsTest(){
         // 8. Use reports
         driver.get("https://www.techproeducation.com");
         extentTest.pass("User is on TechPro Education Homepage");
@@ -72,20 +78,25 @@ public class Day11_ExtentReports extends TestBase {
         extentTest.pass("User is on LMS page.");
 
         // Verify the URL
-        String lmsUrl = driver.getCurrentUrl();
-        assertEquals("https://lms.techproeducation.com/", lmsUrl);
-        extentTest.pass("URL assertion is done.");
+        String expectedUrl = "https://lms.techproeducation.com/";
+        String actualUrl = driver.getCurrentUrl();
+        assertEquals("LMS LOGIN Page is not displayed!",expectedUrl,actualUrl);
+        // Message will appear only if the test case fails
 
+        extentTest.pass("Asserting the LMS Url");
+
+        extentTest.pass("Test is complete.");
 
 
     }
 
     @Test
-    public void extentReportTest2(){
-        // pass is used to mark the step as passed
+    public void extentReportsTest2(){
+        // These methods work as sout body. But this logs/prints the results and message on HTML report instead of console.
+        // pass is used to mark the step as PASSED
         extentTest.pass("Test passed");
 
-        // info is used to give an infrrmation about the step
+        // info is used to give an information about that step
         extentTest.info("Some information");
 
         // fail method is used to mark the step as failed
@@ -104,7 +115,7 @@ public class Day11_ExtentReports extends TestBase {
 
 
     @AfterClass
-    public static void extentReportTearDown(){
+    public static void extentReportsTearDown(){
         //  9. Generate the report
         extentReports.flush();
     }
@@ -113,18 +124,19 @@ public class Day11_ExtentReports extends TestBase {
 
 
     /*
-              1. Create Report Path
-              2. Create HTML report in the path
-              3. Create extent reports object for generating the Entire reports with configuration
-              4. Customise System Info
-              5. Add more custom config info
-              6. Done With Configuration (attachReporter)
-              7. Create extent test
-              8. Use reports
-              9. Generate the report
 
-For this we used this repository
+Extent reports is document generation API so that we can add some custom text on the report.
+It's another tool which makes our testing framework more powerful.
+Extent Report API is used to generate custom HTML reports.
+We can add company or project specific information in the report configuration.
+These reports can be uploaded on JIRA and shared with the team.
 
+In short, Extent reports is a dependency that I use in my framework for generating custom html reports.
+I get that dependency from the COMPANY internal depository.
+
+Set Up:
+
+For this we used this repository/dependency
 https://mvnrepository.com/artifact/com.aventstack/extentreports
 8:19
 <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
@@ -133,5 +145,16 @@ https://mvnrepository.com/artifact/com.aventstack/extentreports
     <artifactId>extentreports</artifactId>
     <version>4.0.9</version>
 </dependency>
+
+1. Create Report Path
+2. Create HTML report in the path
+3. Create extent reports object for generating the Entire reports with configuration
+4. Customise System Info
+5. Add more custom config info
+6. Done With Configuration (attachReporter)
+7. Create extent test
+8. Use reports
+9. Generate the report
+
      */
 }

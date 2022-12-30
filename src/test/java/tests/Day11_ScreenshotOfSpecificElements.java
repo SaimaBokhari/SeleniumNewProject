@@ -27,9 +27,10 @@ public class Day11_ScreenshotOfSpecificElements extends TestBase {
         WebElement logo = driver.findElement(By.xpath("//div[@data-id='898ce2e']"));
         assertTrue(logo.isDisplayed());
 
-        // Take screenshot  of logo
+        // Take screenshot  of logo as proof
         Thread.sleep(2000);
 
+        // Calling reusable method
         takeScreenShotOfTheElement(logo);
 
         // Take screenshot of social media icons
