@@ -12,6 +12,12 @@ import static org.junit.Assert.*;
 
 public class Day11_ReadExcel {
 
+    /*
+Notes:
+Apache POI is the library used to work with Excel files in Selenium.
+
+ */
+
     @Test
     public void readExcelTest() throws IOException {
 
@@ -98,13 +104,14 @@ public class Day11_ReadExcel {
     }
 }
 
+
 /*
 
 Import the apache poi dependency in your pom file
 (https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml)  (https://mvnrepository.com/artifact/org.apache.poi/poi)
 Create resources directory under java folder(right click on java and create the folder)
 Add the excel file on the resources folder
-Create a new package: excelautomation
+Create a new package: excelAutomation
 Create a new class : ReadExcel
 Create a new test method : readExcel()
 Store the path of the  file in a string

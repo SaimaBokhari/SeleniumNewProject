@@ -28,9 +28,10 @@ public abstract class TestBase {
     }
 
     //    @After
-//    public void tearDown(){
-//        driver.quit();
-//    }
+    public void tearDown(){
+        waitFor(3000);
+        driver.quit();
+    }
 
     // Auto Complete Reusable Method
     // This code is used for selecting and verifying our app auto complete search functionality
@@ -98,5 +99,111 @@ public abstract class TestBase {
         }
 
     }
+
+    /* HARD WAIT
+    @Param : second
+     */
+    public static void waitFor(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*
+    JAVASCRIPT EXECUTOR
+    @param WebElement
+    Accepts a web element and scrolls into that element.
+    We use normal methods first, if they don't work then we use JS.
+
+    We may need to scroll in order to capture the screenshots properly for our reports
+    We may need to scroll to specific elements with js executor because
+    some elements may not load properly unless we scroll to them at the exact place
+     */
+    public void scrollIntoViewJS(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
+
+    /*
+    scroll the page all the down
+     */
+    public void scrollAllDownByJS(){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    }
+    /*
+    scroll the page all the way up
+     */
+    public void scrollAllUpByJS(){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
+    }
+
+    /*
+    click on an element by JS
+    @param WebElement
+    Normally we use element.click() in selenium
+    When there is an issue with click() (some advanced codes used, hidden, different UI etc.)
+    Then we can use javascript click
+     */
+
+    public void clickByJS(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click()",element);
+    }
+
+    /*
+    @param : WebElement, String
+    Types the string in the WebElement
+
+    Normally we use element.sendKeys("text") to type in an input.
+    ALTERNATIVELY we can use js executor to type in an input
+    arguments[0].setAttribute('value','admin123');  -> SAME AS sending password value to password box => element.sendKeys("admin123")
+
+    INTERVIEW QUESTION : What are the selenium methods that you use to type in an input?
+    - sendKeys()
+    - with javascript executor we can change the value of the input
+
+     */
+    public void setValueByJS(WebElement element, String text){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].setAttribute('value','"+text+"')",element);
+    }
+
+    /*
+    param : id of the element
+     */
+
+    public void getValueByJS(String idOfElement){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        String value=js.executeScript("return document.getElementById('"+idOfElement+"').value").toString();
+        System.out.println(value);
+
+//        How you get the value of an input box?
+//        We can js executor.
+//        How?
+//        I can get the element using js executor, and get teh value of the element.
+//        For example, I can get the element by id, and use value attribute to get the value of in an input
+//        I have to do this, cause getText in this case does not return teh text in an input
+//        getText() returns the normal text on the webpage, but the default value in any input isn't normal text
+//          e.g. the default value on a hotel checkin date.
+
+
+    }
+
+    //    Changes the changeBackgroundColorByJS of an element.
+    //    Params: WebElement element, String color. NOT COMMON
+    public void changeBackgroundColorByJS(WebElement element, String color){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].style.backgroundColor='"+color+"'",element);
+    }
+    //    NOT COMMON
+    public void addBorderWithJS(WebElement element, String borderStyle){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].style.border='"+borderStyle+"'",element);
+    }
+
 
 }

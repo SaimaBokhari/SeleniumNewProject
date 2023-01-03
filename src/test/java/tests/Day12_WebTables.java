@@ -89,5 +89,18 @@ printData(2,3);  => prints data in 2nd row 3rd column
         }
     }
 
+    // HW
+    //Task 5 : Write a method that accepts 2 parameters
+    //Parameter 1 = row number
+    //Parameter 2 = column number
+    //printData(2,3);  => prints data in 2nd row 3rd column
 
+    public void printData(int rowNum, int colNum){
+        String xpath = "//table[@id='table1']//tr[" + rowNum+"]//td";
+    }
+    @Test
+    public void printDataTest(){
+        printData(2,3); // fbach@yahoo.com
+        printData(4,1); // Conway
+    }
 }

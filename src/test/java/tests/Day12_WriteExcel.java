@@ -72,3 +72,30 @@ Close the workbook
 
     }
 }
+/*
+Javascript is a coding language. It is used by the developers to design/create webpages (user interface).
+Javascript is used to interact with the webpages.
+
+JUnit, TestNG work with Java.
+
+Javascript Executor is used to write in Selenium.
+Testers use Javascript to do some automation script such as click,scroll, zoom in/out, hover over etc.
+
+Javascript Executor:
+Javascript Executor is an INTERFACE (can also be called API) developed by Selenium developers to execute Javascript comments/codes.
+JS is used to automate Javascript comments/codes.
+
+What can we do with JS Executor?
+> Click, specially on the hidden elements.
+> scroll onto specific elements, scroll all the way up/down
+> Type in an input
+> Change the value of an element
+> Hover over
+> Change the colour, background colour, add border etc.
+
+How to create?
+1. Create a reference/object (we need to downcast the webdriver)
+2. Calling the method js.executeScript()
+
+'arguments' is a keyword in executeScript method
+ */
