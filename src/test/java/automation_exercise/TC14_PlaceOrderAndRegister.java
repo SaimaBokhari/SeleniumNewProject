@@ -47,7 +47,8 @@ public class TC14_PlaceOrderAndRegister extends TestBase {
         //4. Add products to cart
 
         // Step 1: Hover over first product and click 'Add to cart'
-        WebElement firstProduct = driver.findElement(By.xpath("(//a[@data-product-id = '1'])[1]"));
+        WebElement firstProduct = driver.findElement(By.xpath("//div[@class='product-image-wrapper'][1]"));
+        driver.findElement(By.xpath("(//a[@data-product-id='1'])[1]")).click();
         Thread.sleep(2000);
 
         // Step 2: Create the actions object

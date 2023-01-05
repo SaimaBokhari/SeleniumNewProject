@@ -1,4 +1,4 @@
-package homework;
+package homework.firstHW;
 
 import org.junit.Test;
 import org.openqa.selenium.By;

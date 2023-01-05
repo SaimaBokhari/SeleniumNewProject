@@ -1,4 +1,4 @@
-package homework;
+package homework.firstHW;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -14,7 +14,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 

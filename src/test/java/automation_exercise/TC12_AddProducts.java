@@ -105,8 +105,7 @@ public class TC12_AddProducts extends TestBase {
 
 
             // 5. Hover over first product and click 'Add to cart'
-            //------------------------------------------------------------------------------------------------------
-            // NOTE : firstProduct YOU LOCATED IS "Add to cart" BUTTON. IN MY OPONION WE SHOULD LOCATE TO WRAPPER div
+            //  WE SHOULD LOCATE TO WRAPPER div
             WebElement firstProduct = driver.findElement(By.xpath("//div[@class='product-image-wrapper'][1]"));  // (//div[@class='product-image-wrapper'])[1]
             String firstProductPrice = driver.findElement(By.xpath("(//div[@class='productinfo text-center']//h2)[1]")).getText().replaceAll("[^0-9]", "");
 
@@ -125,7 +124,7 @@ public class TC12_AddProducts extends TestBase {
             Thread.sleep(2000);
 
             //------------------------------------------------------------------------------------------------------
-            // NOTE : NOW WE SHOULD LOACTE TO "Add to cart" AND CLICK IT
+            // NOTE : NOW WE SHOULD LOCATE TO "Add to cart" AND CLICK IT
             driver.findElement(By.xpath("(//a[@data-product-id='1'])[1]")).click();
             //------------------------------------------------------------------------------------------------------
 
@@ -154,11 +153,7 @@ public class TC12_AddProducts extends TestBase {
 
 
             // 8. Click 'View Cart' button
-            //driver.findElement(By.xpath("(//a[@href='/view_cart'])[1]")).click();
-
-            //------------------------------------------------------------------------------------------------------
             // THERE IS A 'View Cart' BUTTON IN THE OPENED DIALOG. IT SHOULD BE CLICKED
-            // BECAUSE AFTER SECOND CLICK, IT DOES NOT SAY "CLICK 'Continue Shopping'"
             // AND IT SAYS Click 'View Cart' NOT 'Cart'
             driver.findElement(By.xpath("//div[@class='modal-body']//a")).click();
             //------------------------------------------------------------------------------------------------------

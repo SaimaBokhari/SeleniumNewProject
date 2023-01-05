@@ -6,12 +6,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.function.Function;
 
 import static org.junit.Assert.assertTrue;
 
@@ -100,17 +105,6 @@ public abstract class TestBase {
 
     }
 
-    /* HARD WAIT
-    @Param : second
-     */
-    public static void waitFor(int seconds){
-        try {
-            Thread.sleep(seconds*1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /*
     JAVASCRIPT EXECUTOR
     @param WebElement
@@ -119,23 +113,25 @@ public abstract class TestBase {
 
     We may need to scroll in order to capture the screenshots properly for our reports
     We may need to scroll to specific elements with js executor because
-    some elements may not load properly unless we scroll to them at the exact place
+    some elements may not load properly unless we scroll to them at the exact place.
      */
+    // Scroll into view of an element ... means scroll until the given element is visible
     public void scrollIntoViewJS(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].scrollIntoView(true);",element);
     }
 
     /*
-    scroll the page all the down
+    scroll the page all the down by using JavaScript.. doesn't need any parameter because we are dealing with window directly
      */
     public void scrollAllDownByJS(){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
     }
     /*
-    scroll the page all the way up
+    scroll the page all the way up by using JavaScript... doesn't need any parameter because we are dealing with window directly
      */
+
     public void scrollAllUpByJS(){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
@@ -147,6 +143,7 @@ public abstract class TestBase {
     Normally we use element.click() in selenium
     When there is an issue with click() (some advanced codes used, hidden, different UI etc.)
     Then we can use javascript click
+    Common and important
      */
 
     public void clickByJS(WebElement element){
@@ -167,19 +164,21 @@ public abstract class TestBase {
     - with javascript executor we can change the value of the input
 
      */
-    public void setValueByJS(WebElement element, String text){
+    public void setValueByJS(WebElement element, String inputText){
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].setAttribute('value','"+text+"')",element);
+        // arguments[0].setAttribute('value', 'inputText (any data that you need to send)'"
+        js.executeScript("arguments[0].setAttribute('value','"+inputText+"')",element);
     }
 
     /*
+    This method is used to get the value of an input
     param : id of the element
      */
 
     public void getValueByJS(String idOfElement){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         String value=js.executeScript("return document.getElementById('"+idOfElement+"').value").toString();
-        System.out.println(value);
+        System.out.println("Value of the element= " + value);
 
 //        How you get the value of an input box?
 //        We can js executor.
@@ -188,22 +187,94 @@ public abstract class TestBase {
 //        For example, I can get the element by id, and use value attribute to get the value of in an input
 //        I have to do this, cause getText in this case does not return teh text in an input
 //        getText() returns the normal text on the webpage, but the default value in any input isn't normal text
-//          e.g. the default value on a hotel checkin date.
+//          e.g. the default value on a hotel check-in date.
 
 
     }
 
     //    Changes the changeBackgroundColorByJS of an element.
     //    Params: WebElement element, String color. NOT COMMON
-    public void changeBackgroundColorByJS(WebElement element, String color){
+    public void changeBackgroundColorByJS(WebElement element, String colorName){
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].style.backgroundColor='"+color+"'",element);
+        js.executeScript("arguments[0].style.backgroundColor='"+colorName+"'",element);
     }
-    //    NOT COMMON
+    //    NOT COMMON .. can be used to highlight some parts on screenshots/reports
     public void addBorderWithJS(WebElement element, String borderStyle){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].style.border='"+borderStyle+"'",element);
     }
 
+    /* HARD WAIT
+    Needs only one parameter
+    @Param : second
+     */
+    public static void waitFor(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    DYNAMIC SELENIUM WAITS:
+//===============Explicit Wait==============//
+    public static WebElement waitForVisibility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    public static WebElement waitForVisibility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static WebElement waitForClickability(WebElement element, int durationOfSec) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(durationOfSec));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public static WebElement waitForClickability(By locator, int durationOfSec) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(durationOfSec));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    // We are using HARD Wait here and converting it into dynamic wait
+    public static void clickWithTimeOut(WebElement element, int timeout) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.click();
+                return;
+            } catch (WebDriverException e) {
+                waitFor(1);
+            }
+        }
+    }
+
+    // This can be used when a new page opens completely
+    public static void waitForPageToLoad(long timeout) {
+        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        try {
+            System.out.println("Waiting for page to load...");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            wait.until(expectation);
+        } catch (Throwable error) {
+            System.out.println(
+                    "Timeout waiting for Page Load Request to complete after " + timeout + " seconds");
+        }
+    }
+
+    //======Fluent Wait====
+    // params : xpath of teh element , max timeout in seconds, polling in second
+    public static WebElement fluentWait(String xpath, int withTimeout, int pollingEvery) {
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(withTimeout))  //Wait for given seconds each time
+                .pollingEvery(Duration.ofSeconds(pollingEvery))  //Check for the element after every given second
+                .withMessage("Ignoring No Such Element Exception")
+                .ignoring(NoSuchElementException.class);
+
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+        return element;
+    }
 
 }
