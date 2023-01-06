@@ -53,6 +53,7 @@ public class TC13_ProductQuantity extends TestBase {
 //        //6. Increase quantity to 4
         //clickByJS(driver.findElement(By.xpath("//input[@type='number']")));
         getValueByJS("quantity");  // 1
+       // setValueByJS("quantity", "4");
 
 
 //        //7. Click 'Add to cart' button

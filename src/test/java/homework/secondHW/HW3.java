@@ -36,7 +36,7 @@ You can use hard wait if needed.
         //Then click on Run Effect button
         WebElement button = driver.findElement(By.id("button"));
         button.click();
-        waitFor(2);
+        waitFor(2);  // Hard wait by REUSABLE METHOD
 
         //Then print the text and verify it is empty.
         String textAfterClick = driver.findElement(By.xpath("//div[@id='effect']//p")).getText();
@@ -46,7 +46,7 @@ You can use hard wait if needed.
 
         // Then click on Run Effect button one more time
         button.click();
-        waitFor(2);
+        waitFor(2);  // Hard wait by REUSABLE METHOD
 
         //Print the text that should be : Etiam libero neque,......
         System.out.println("text = " + text);

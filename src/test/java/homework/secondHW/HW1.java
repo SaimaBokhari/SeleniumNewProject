@@ -24,7 +24,7 @@ Verify the text contains “Sed non urna.”
         // user clicks on Section2 accordion
         driver.findElement(By.xpath("//*[@id='ui-id-3']")).click();
 
-        waitFor(2);
+        waitFor(2);  // Hard wait by REUSABLE METHOD
         String text = driver.findElement(By.xpath("//*[@id='ui-id-4']//p")).getText();
         assertTrue(text.contains("Sed non urna."));
 

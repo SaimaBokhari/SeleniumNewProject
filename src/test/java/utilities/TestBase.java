@@ -189,7 +189,6 @@ public abstract class TestBase {
 //        getText() returns the normal text on the webpage, but the default value in any input isn't normal text
 //          e.g. the default value on a hotel check-in date.
 
-
     }
 
     //    Changes the changeBackgroundColorByJS of an element.
