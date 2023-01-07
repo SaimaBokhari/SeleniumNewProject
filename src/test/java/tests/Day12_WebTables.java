@@ -1,5 +1,7 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,9 @@ import utilities.TestBase;
 import java.util.List;
 
 public class Day12_WebTables extends TestBase {
+
+    private static Logger logger = LogManager.getLogger(Day12_WebTables.class.getName());
+
     @Test
     public void printTableData(){
         /*
@@ -28,14 +33,19 @@ printData(2,3);  => prints data in 2nd row 3rd column
 
         // Task 1 : Print the entire table
         System.out.println("Print Entire Table *********");
+
+        logger.info("Printing the webtable information");  // We created this later on Day 15
+
         String entireTable = driver.findElement(By.xpath("//table[@id='table1']")).getText();
         System.out.println("entireTable = " + entireTable);
+
 
         System.out.println("===========================");
 
         List<WebElement> allTableElements = driver.findElements(By.xpath("//table[@id='table1']//td"));
         for (WebElement w : allTableElements){
             System.out.println(w.getText());
+            logger.info(w.getText());
         }
 
         // We can get specific cell data

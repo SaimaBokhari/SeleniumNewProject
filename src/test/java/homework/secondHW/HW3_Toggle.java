@@ -7,7 +7,7 @@ import utilities.TestBase;
 
 import static org.junit.Assert.assertTrue;
 
-public class HW3 extends TestBase {
+public class HW3_Toggle extends TestBase {
     /*
     When user goes to https://jqueryui.com/toggle/
 Print the text that should be : Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
@@ -50,6 +50,26 @@ You can use hard wait if needed.
 
         //Print the text that should be : Etiam libero neque,......
         System.out.println("text = " + text);
+
+
+    }
+
+    // Mr Ahmet Bayraam's solution
+    public void toggleTest() throws InterruptedException {
+        driver.get("https://jqueryui.com/toggle/");
+        driver.switchTo().frame(0);
+        String before = driver.findElement(By.xpath("//div[@id='effect']//p")).getText();
+        System.out.println("Before : "+before);
+        driver.findElement(By.xpath("//button[@id='button']")).click();
+
+        Thread.sleep(2000);
+        String after = driver.findElement(By.xpath("//div[@id='effect']//p")).getText();
+        System.out.println("After : "+after);
+
+        driver.findElement(By.xpath("//button[@id='button']")).click();
+        Thread.sleep(2000);
+        String after1 = driver.findElement(By.xpath("//div[@id='effect']//p")).getText();
+        System.out.println("After1 : "+after1);
 
 
     }

@@ -43,6 +43,56 @@ And verify the message is equal to “It's back!”
         assertTrue(driver.findElement(By.id("message")).getText().contains("It's back!"));
 
     }
+    @Test  // Mr Ahmet's Solution
+    public void test1(){
+//     No need to use explicit wait, implicit wait is enough
+//        This is test case is done using implicit wait
+
+        driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+//        Click on remove button
+        WebElement removeButton=driver.findElement(By.xpath("(//button[@type='button'])"));
+        removeButton.click();
+//        And verify the message is equal to “It's gone!”
+//      This is where I need to wait
+//      What is our expected condition???
+//      Expected condition is to wait for the It's gone element
+        assertEquals("It's gone!",driver.findElement(By.xpath("//p[@id='message']")).getText());
+        WebElement addButton=driver.findElement(By.xpath("(//button[@type='button'])[1]"));
+        addButton.click();
+        assertEquals("It's back!",driver.findElement(By.xpath("//p[@id='message']")).getText());
+
+    }
+    @Test  // Mr Ahmet's Solution
+    public void test2(){
+//     No need to use explicit wait, implicit wait is enough
+//     But as example  This is test case is done using explicit wait
+//     CREATE WAIT OBJECT
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        Go to https://the-internet.herokuapp.com/dynamic_controls
+        driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+//        Click on remove button
+        WebElement removeButton=driver.findElement(By.xpath("(//button[@type='button'])"));
+        removeButton.click();
+//        And verify the message is equal to “It's gone!”
+        //This is where I need to wait
+        //What is our expected condition???
+        //Expected condition is to wait for the It's gone element
+        WebElement goneMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
+//        WebElement goneMessage=driver.findElement(By.xpath("//p[@id='message']"));
+        String goneMessageText=goneMessage.getText();
+        assertEquals(goneMessageText,"It's gone!");
+//        Then click on Add button
+        WebElement addButton=driver.findElement(By.xpath("(//button[@type='button'])[1]"));
+        addButton.click();
+
+//        And verify the message is equal to “It's back!”
+        WebElement backMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
+//        WebElement backMessage=driver.findElement(By.xpath("//p[@id='message']"));
+        String backMessageText=backMessage.getText();
+        assertEquals(backMessageText,"It's back!");
+
+
+    }
 
     @Test
     public void synchronization(){

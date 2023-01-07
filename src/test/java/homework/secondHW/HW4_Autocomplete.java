@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
-public class HW4 extends TestBase {
+public class HW4_Autocomplete extends TestBase {
     /*
 When user goes to https://jqueryui.com/autocomplete/
 And type Apple

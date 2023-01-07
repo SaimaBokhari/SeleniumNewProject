@@ -18,6 +18,7 @@ public class Day14_StaleElementException extends TestBase {
         System.out.println(lms.getText());  // StaleElementReferenceException
 
         // Note: After the refresh we should locate the element again
+        // SOLUTION: RELOCATE THE ELEMENT
 //
 //        WebElement lms = driver.findElement(By.linkText("LMS LOGIN"));
 //        System.out.println(lms.getText());

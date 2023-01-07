@@ -3,7 +3,11 @@ package homework.thirdHW;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.TestBase;
+
+import java.time.Duration;
 
 import static org.junit.Assert.*;
 
@@ -47,6 +51,30 @@ NOTE: .isEnabled(); is used to check if an element is enabled or not
         //And verify the textbox is disabled (I cannot type in the box)
         assertFalse(textBox.isEnabled());
 
+
+    }
+
+    @Test   // Mr Ahmet's Solution
+    public void test(){
+//        EXPLICIT WAIT MUST BE USER IMPLICIT WAIT CANNOT HANDLE CAUSE OF THE
+        driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+
+        //    Click enable Button
+        driver.findElement(By.xpath("//button[@onclick='swapInput()']")).click();
+//        Assert.assertTrue(driver.findElement(By.xpath("//input[@type='text']")).isEnabled()); //FAILS SO EXPLICIT MUST BE USED
+        //    And verify the message is equal to “It's enabled!”
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement enabledMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
+        String enabledMessageText=enabledMessage.getText();
+        assertEquals(enabledMessageText,"It's enabled!");
+
+        //    And verify the textbox is enabled (I can type in the box)
+        WebElement textBox=driver.findElement(By.xpath("//input[@type='text']"));
+        assertTrue(textBox.isEnabled());//isEnables checks if an element is enabled. Returns true if enabled, returns false if disabled.
+
+//        click on disable button
+        driver.findElement(By.xpath("//button[@onclick='swapInput()']")).click();
+        assertTrue(!driver.findElement(By.xpath("//input[@type='text']")).isDisplayed());
 
     }
 

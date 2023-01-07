@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class HW2 extends TestBase {
+public class HW2_DatePicker extends TestBase {
     /*
 When user goes to https://jqueryui.com/datepicker/
 And select the next date of the current date
@@ -43,6 +43,25 @@ EG if today is August 30, 2022 -> select August 31, 2022
         }
 
     }
+
+    // Mr Ahmet Bayraam's solution
+        @Test
+        public void dateSelect1(){
+            driver.get("https://jqueryui.com/datepicker/");
+            driver.switchTo().frame(0);
+            driver.findElement(By.id("datepicker")).sendKeys("09/10/2023");
+
+        }
+
+        // Mr Ahmet Bayraam's solution
+        @Test
+        public void dateSelect2(){
+            driver.get("https://jqueryui.com/datepicker/");
+            driver.switchTo().frame(0);
+            driver.findElement(By.id("datepicker")).click();
+            driver.findElement(By.xpath("//a[@data-date='10']")).click();
+
+        }
 
     @Test
     public void test2(){

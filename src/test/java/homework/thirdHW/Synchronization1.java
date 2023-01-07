@@ -32,6 +32,18 @@ Then verify the ‘Hello World!’ Shows up on the screen
 
     }
 
+    @Test    // Mr Ahmet's solution
+    public void test2(){
+        driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
+        driver.findElement(By.xpath("//button")).click();
+        WebElement helloWord=driver.findElement(By.xpath("//h4[.='Hello World!']"));
+        assertEquals(helloWord.getText(),"Hello World!");
+        //All is good. We don't need to use explicit wait. //Implicit wait solved the issue
+        //Cause the element is not hidden(No display:none on Hello World).
+        //The entire element <h4>Hello World!</h4> just renders late
+
+    }
+
     @Test
     public void Synchronization2(){
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
