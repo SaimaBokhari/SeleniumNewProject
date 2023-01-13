@@ -35,14 +35,14 @@ public class Day15_Log4J2 {
     Similar to Extent Reports but less advanced.
 
     > It's similar to System.out.println but advanced version (which shows the message on the console only, doesn't save it as a file)
-       as well as time stamp
+       while log4J can print and store the message with time stamp.
 
     We don't use a lot of Log4j, we prefer Extent Reports. It's mostly used by the developers
 
     we'll use log4j2 ... means 2nd version which is the latest so far
 
-    The log4j provides informing about the tests.. but this is not the best form of reports.. There are better ways of
-    creating reports in Cucumber
+    The log4j is used informing about the tests.. but this is not the best form of reports.. There are better ways of
+    creating reports in Cucumber.
 
 
 // Note: To change the levels, we
@@ -51,7 +51,7 @@ public class Day15_Log4J2 {
 2. Create a log file under resources : log4j2.xml
 3. Mark Directory as > Test Resource Root
 
- and add this repository in the log4j2.xml   (used for small example, later we added the full configuration)
+ and add this repository in the log4j2.xml   (used for small example, later we added the full configuration that's still in xml file)
 
  <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
