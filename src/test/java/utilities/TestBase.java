@@ -92,7 +92,7 @@ public abstract class TestBase {
         // 1. Take screenshot
         File image = webElement.getScreenshotAs(OutputType.FILE);
 
-        // 2. Creating a path and a DYNAMIC NAME for the image
+        // 2. Creating a DYNAMIC path and NAME for the image
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());  // getting the current local date and time
         String path = System.getProperty("user.dir")+ "/test-output/Screenshots/Specific Elements/"+currentTime+".png";
 

@@ -72,7 +72,7 @@ public class Day02_URLVerification {
 
          If the user story passed in first sprint, but failed in lets 3rd or 4th sprint,
          we have 2 options:
-             1. Create a bug ticket and assign to a dev by adding the same user story again.
+             1. Create a bug ticket and assign to a dev by adding the same user story again. OR
              2. If the bug is big, we can create a new user story (decided by the team usually)
                   e.g. page title should be there, assign to a dev, once fixed, we retest it.
 

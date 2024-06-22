@@ -1,0 +1,4 @@
+2023-02-09 10:17:12,487 FATAL t.Day15_Log4J2 [main] Fatal Log!!
+2023-02-09 10:17:12,491 ERROR t.Day15_Log4J2 [main] Error Log!!
+2023-02-09 10:17:12,491 WARN t.Day15_Log4J2 [main] Warning Log!!
+2023-02-09 10:17:12,491 INFO t.Day15_Log4J2 [main] Info Log!!

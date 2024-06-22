@@ -1,8 +1,0 @@
-2023-01-07 21:22:24,441 INFO t.Day12_WebTables [main] Printing the webtable information
-2023-01-07 21:22:24,556 INFO t.Day12_WebTables [main] Smith
-2023-01-07 21:22:24,581 INFO t.Day12_WebTables [main] John
-2023-01-07 21:22:24,608 INFO t.Day12_WebTables [main] jsmith@gmail.com
-2023-01-07 21:22:24,635 INFO t.Day12_WebTables [main] $50.00
-2023-01-07 21:22:24,664 INFO t.Day12_WebTables [main] http://www.jsmith.com
-2023-01-07 21:22:24,708 INFO t.Day12_WebTables [main] edit delete
-2023-01-07 21:22:24,746 INFO t.Day12_WebTables [main] Bach

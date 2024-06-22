@@ -35,7 +35,7 @@ public class Day11_ExtentReports extends TestBase {
        extentHtmlReporter = new ExtentHtmlReporter(path);
 
        // 3. Create extent reports object for generating the Entire reports with configuration
-        extentReports = new ExtentReports();
+        extentReports = new ExtentReports(); // creates an empty report template, to which we can add custom information
 
 //      **********************
 
@@ -49,7 +49,7 @@ public class Day11_ExtentReports extends TestBase {
 
         // 5. Add more custom configuration info
         extentHtmlReporter.config().setReportName("TechPro Education LMS");
-        extentHtmlReporter.config().setDocumentTitle("TechPro Education Extent Reports");
+        extentHtmlReporter.config().setDocumentTitle("TechProEducation Extent Reports");
 
         // 6. Done With Configuration... Now attach the two  (attachReporter)
         extentReports.attachReporter(extentHtmlReporter);
@@ -68,23 +68,25 @@ public class Day11_ExtentReports extends TestBase {
     }
 
     @Test
-    public void extentReportsTest(){
+    public void extentReportsTest() throws InterruptedException {
         // 8. Use reports
         driver.get("https://www.techproeducation.com");
+        Thread.sleep(3000);
         extentTest.pass("User is on TechPro Education Homepage");
 
-        // Go to LMS
+        // click on LMS Login
         driver.findElement(By.linkText("LMS LOGIN")).click();
+        Thread.sleep(3000);
         extentTest.pass("User is on LMS page.");
 
         // Verify the URL
         String expectedUrl = "https://lms.techproeducation.com/";
         String actualUrl = driver.getCurrentUrl();
         assertEquals("LMS LOGIN Page is not displayed!",expectedUrl,actualUrl);
+
         // Message will appear only if the test case fails
-
+        Thread.sleep(3000);
         extentTest.pass("Asserting the LMS Url");
-
         extentTest.pass("Test is complete.");
 
 
@@ -126,7 +128,10 @@ public class Day11_ExtentReports extends TestBase {
     /*
 
 Extent reports is document generation API so that we can add some custom text on the report.
-It's another tool which makes our testing framework more powerful.
+They are ready templates for reports. But we can customise them.
+Extent REPORTS ARE NOT PART OF SELENIUM. We just need to add a dependency in our framework.
+It's another tool (just like java faker), which makes our testing framework more powerful.
+
 Extent Report API is used to generate custom HTML reports.
 We can add company or project specific information in the report configuration.
 These reports can be uploaded on JIRA and shared with the team.
@@ -134,11 +139,19 @@ These reports can be uploaded on JIRA and shared with the team.
 In short, Extent reports is a dependency that I use in my framework for generating custom html reports.
 I get that dependency from the COMPANY internal depository.
 
+Benefits:
+- Open source
+- Works with different browsers and platforms
+- Works with different frameworks e.g. junit, testng, cucumber
+- it's customizeable
+- we can log/print each step
+
 Set Up:
 
 For this we used this repository/dependency
 https://mvnrepository.com/artifact/com.aventstack/extentreports
-8:19
+
+
 <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 <dependency>
     <groupId>com.aventstack</groupId>
@@ -154,7 +167,7 @@ https://mvnrepository.com/artifact/com.aventstack/extentreports
 6. Done With Configuration (attachReporter)
 7. Create extent test
 8. Use reports
-9. Generate the report
+9. Generate the report using flush method
 
      */
 }

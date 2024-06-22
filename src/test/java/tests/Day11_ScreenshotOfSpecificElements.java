@@ -2,8 +2,11 @@ package tests;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import utilities.TestBase;
+
+import java.io.File;
 
 import static org.junit.Assert.*;
 
@@ -29,6 +32,8 @@ public class Day11_ScreenshotOfSpecificElements extends TestBase {
 
         // Take screenshot  of logo as proof
         Thread.sleep(2000);
+        // File image = logo.getScreenshotAs(OutputType.FILE);
+        // OR we can create a reusable method in out TestBase class so we can call
 
         // Calling reusable method
         takeScreenShotOfTheElement(logo);

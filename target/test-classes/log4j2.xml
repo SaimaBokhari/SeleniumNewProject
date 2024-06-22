@@ -54,6 +54,8 @@
         Note that we can customize this logger.
         Add more logger under loggers for custumizing specific package, class,...
 
+        Mark directory as ==> Test Sources Root ... to MAKE IT LIKE IT APPEARS NOW
+
         How to write the log messages to a file? Use RollingFile in appenders.
         <RollingFile name="Rolling-${sd:type}" fileName="${filename}"
                               filePattern="target/rolling1/test1-${sd:type}.%i.log.gz">

@@ -7,7 +7,8 @@ public class FirstClass {
     public static void main(String[] args) {
 
         // 1. Set up Chrome Driver (with two parameters: Webdriver, path of chromedriver
-        System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver"); // for MAC
+        //System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver.exe"); // for WINDOWS
 
         // 2. Create Chrome Driver Object
         WebDriver driver = new ChromeDriver();
